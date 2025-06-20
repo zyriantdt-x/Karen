@@ -50,7 +50,13 @@ public class TcpService : ConnectionHandler {
 
                 object parsed_message = parser?.Parse( ref reader ) ?? new();
 
+                IHandler? handler = this.handlers.CreateHandler( header );
+                if( handler is null ) {
+                    this.logger.LogWarning( $"No handler for packet {header}" );
+                    continue;
+                }
 
+                _ = handler.HandleAsync( client, parsed_message );
             }
 
             pipe_reader.AdvanceTo( reader_sequence.Position );
