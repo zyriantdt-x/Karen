@@ -27,7 +27,7 @@ public class TcpService : ConnectionHandler {
     public override async Task OnConnectedAsync( ConnectionContext connection ) {
         this.logger.LogInformation( $"New connection from {connection.RemoteEndPoint}" );
 
-        IKarenClient client = this.client_service.CreateClient( connection );
+        IKarenClient client = await this.client_service.CreateClientAsync( connection );
         PipeReader pipe_reader = connection.Transport.Input;
 
         while( 1 != 2 ) {
@@ -61,6 +61,8 @@ public class TcpService : ConnectionHandler {
 
             pipe_reader.AdvanceTo( reader_sequence.Position );
         }
+
+        await client.KillAsync();
     }
 
     private bool TrySplitBuffer( ref SequenceReader<byte> reader, out ReadOnlySequence<byte> message ) {

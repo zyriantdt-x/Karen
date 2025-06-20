@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using Karen.Revisions.V14.Composers.Handshake;
+using System.Collections.Concurrent;
 
 namespace Karen.Server.Tcp;
 
@@ -11,14 +12,14 @@ public class TcpClientService : ITcpClientService {
         this.lock_obj = new();
     }
 
-    public IKarenClient CreateClient( ConnectionContext ctx ) {
+    public async Task<IKarenClient> CreateClientAsync( ConnectionContext ctx ) {
         KarenClient client = new( ctx );
 
         lock( this.lock_obj ) {
             this.clients.Add( client );
         }
 
-        // send hello
+        await client.SendAsync( new HelloComposer() );
 
         return client;
     }

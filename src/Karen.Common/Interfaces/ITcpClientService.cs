@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Connections;
 
 namespace Karen.Common.Interfaces;
 public interface ITcpClientService {
-    IKarenClient CreateClient( ConnectionContext ctx );
+    Task<IKarenClient> CreateClientAsync( ConnectionContext ctx );
 
     Task DisconnectClientAsync( IKarenClient client );
 
