@@ -1,0 +1,11 @@
+﻿global using Microsoft.AspNetCore.Builder;
+global using Microsoft.AspNetCore.Connections;
+global using Microsoft.AspNetCore.Hosting;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging;
+global using Karen.Common.Interfaces;
+global using Karen.Common.Abstractions;
+global using Karen.Server.Tcp;
+global using Karen.Common.Encoding;

@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# IDE2001: Embedded statements must be on their own line
+csharp_style_allow_embedded_statements_on_same_line_experimental = true
