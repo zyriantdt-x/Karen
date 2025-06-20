@@ -1,4 +1,6 @@
-﻿WebApplicationBuilder builder = WebApplication.CreateBuilder( args );
+﻿using Karen.Revisions.V14;
+
+WebApplicationBuilder builder = WebApplication.CreateBuilder( args );
 
 builder.Configuration
     .SetBasePath( Directory.GetCurrentDirectory() )
@@ -7,3 +9,6 @@ builder.Configuration
 
 builder.AddTcpService();
 
+builder.Services.AddV14();
+
+await builder.Build().RunAsync();
