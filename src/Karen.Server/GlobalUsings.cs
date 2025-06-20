@@ -9,3 +9,4 @@ global using Karen.Common.Interfaces;
 global using Karen.Common.Abstractions;
 global using Karen.Server.Tcp;
 global using Karen.Common.Encoding;
+global using Karen.Server;
