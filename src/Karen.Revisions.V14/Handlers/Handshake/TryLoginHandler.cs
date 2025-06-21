@@ -6,6 +6,8 @@ public class TryLoginHandler : IHandler<TryLoginMessage> {
     public short Header => 4;
 
     public Task HandleAsync( IKarenClient client, TryLoginMessage body ) {
-        throw new NotImplementedException();
+        Console.WriteLine( body.Username + " " + body.Password );
+        return Task.CompletedTask;
+        //throw new NotImplementedException();
     }
 }

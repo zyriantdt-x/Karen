@@ -1,6 +1,5 @@
 ﻿using Karen.Common.Encoding;
 using System.Buffers;
-using System.Text;
 
 namespace Karen.Common.Protocol;
 
@@ -22,7 +21,6 @@ public readonly ref struct PacketReader {
 
         ReadOnlySpan<byte> span = this.PeekSpan( length );
         int value = VL64Encoding.Decode( span );
-        this.reader.Advance( length );
 
         return value;
     }
@@ -32,7 +30,6 @@ public readonly ref struct PacketReader {
             throw new InvalidOperationException( "Not enough data for base64" );
 
         ReadOnlySpan<byte> bytes = this.reader.CurrentSpan.Slice( this.reader.CurrentSpanIndex, 2 );
-        this.reader.Advance( 2 );
 
         return Base64Encoding.Decode( bytes );
     }
@@ -42,7 +39,11 @@ public readonly ref struct PacketReader {
     }
 
     public string ReadString() {
-        return System.Text.Encoding.Default.GetString( this.PeekSpan( this.ReadBase64() ) );
+        int length = this.ReadBase64();
+
+        ReadOnlySpan<byte> bytes = this.PeekSpan( length );
+
+        return System.Text.Encoding.Default.GetString( bytes );
     }
 
     public byte ReadByte() {
@@ -51,10 +52,15 @@ public readonly ref struct PacketReader {
                : b;
     }
 
-    public ReadOnlySpan<byte> PeekSpan( int length ) {
-        return this.reader.CurrentSpan.Length - this.reader.CurrentSpanIndex >= length
-            ? this.reader.CurrentSpan.Slice( this.reader.CurrentSpanIndex, length )
-            : throw new InvalidOperationException( "PeekSpan only supports single-span sequences" );
+    public ReadOnlySpan<byte> PeekSpan( int length, bool advance = true ) {
+        if( this.reader.CurrentSpan.Length - this.reader.CurrentSpanIndex < length ) {
+            throw new InvalidOperationException( "PeekSpan only supports single-span sequences" );
+        }
+
+        ReadOnlySpan<byte> span = this.reader.CurrentSpan.Slice( this.reader.CurrentSpanIndex, length );
+        if( advance ) this.reader.Advance( length );
+
+        return span;
     }
 
     public SequencePosition Position => this.reader.Position;
