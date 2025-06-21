@@ -1,6 +1,5 @@
 ﻿using Karen.Common.Encoding;
 using System.IO.Pipelines;
-using System.Text;
 
 namespace Karen.Common.Abstractions;
 public abstract class ComposerBase {
@@ -62,7 +61,14 @@ public abstract class ComposerBase {
 
     public async Task WriteToPipeAsync( PipeWriter writer, bool with_flush ) {
         this.writer = writer;
-        await this.ComposeAsync();
+
+        await this.writer!.WriteAsync( Base64Encoding.Encode( this.Header, 2 ) ); // write the header
+
+        await this.ComposeAsync(); // write the contents
+
+        await this.writer!.WriteAsync( new( [1] ) ); // wtf ? write the end
+
+
         if( with_flush ) _ = await writer.FlushAsync();
     }
 
