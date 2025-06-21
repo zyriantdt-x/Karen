@@ -18,7 +18,7 @@ public class ParserRepository {
     }
 
     private void RegisterParsers() {
-        foreach( IParser parser in this.sp.GetServices<IHandler>() ) {
+        foreach( IParser parser in this.sp.GetServices<IParser>() ) {
             this.RegisterParser( parser.Header, parser );
         }
     }
