@@ -6,10 +6,21 @@ public class ParserRepository {
     private readonly ILogger<ParserRepository> logger;
 
     private readonly ConcurrentDictionary<int, IParser> parsers;
+    private readonly IServiceProvider sp;
 
-    public ParserRepository( ILogger<ParserRepository> logger ) {
+    public ParserRepository( ILogger<ParserRepository> logger, IServiceProvider sp ) {
         this.logger = logger;
+
         this.parsers = [];
+        this.sp = sp;
+
+        this.RegisterParsers();
+    }
+
+    private void RegisterParsers() {
+        foreach( IParser parser in this.sp.GetServices<IHandler>() ) {
+            this.RegisterParser( parser.Header, parser );
+        }
     }
 
     public void RegisterParser( short header, IParser parser ) {

@@ -3,6 +3,7 @@ using System.Buffers;
 
 namespace Karen.Common.Interfaces;
 public interface IParser {
+    short Header { get; }
     object Parse( ref PacketReader reader );
 }
 

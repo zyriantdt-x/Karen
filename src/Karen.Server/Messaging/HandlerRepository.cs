@@ -1,11 +1,12 @@
 ﻿using System.Collections.Concurrent;
+using System.Reflection;
 
 namespace Karen.Server.Messaging;
 
 public class HandlerRepository {
     private readonly ILogger<HandlerRepository> logger;
 
-    private readonly ConcurrentDictionary<int, Type> handlers;
+    private readonly ConcurrentDictionary<int, IHandler> handlers; // i'd like these to be transient but we're not there yet
     private readonly IServiceProvider sp;
 
     public HandlerRepository( ILogger<HandlerRepository> logger, IServiceProvider sp ) {
@@ -13,23 +14,29 @@ public class HandlerRepository {
 
         this.handlers = [];
         this.sp = sp;
+
+        this.RegisterHandlers();
     }
 
-    public void RegisterHandler( short header, Type handler ) {
+    private void RegisterHandlers() {
+        foreach( IHandler handler in this.sp.GetServices<IHandler>() ) {
+            this.RegisterHandler( handler.Header, handler );
+        }
+    }
+
+    public void RegisterHandler( short header, IHandler handler ) {
         this.logger.LogInformation( $"Adding handler for {header}" );
         if( !this.handlers.TryAdd( header, handler ) )
             throw new Exception( $"Failed to add handler for {header}" );
     }
 
-    public IHandler? CreateHandler( short header ) { // i'm not sure if we need to create a handler each time or if a single one will suffice... we will see
+    public IHandler? GetHandler( short header ) { // one for now... shame they're not transient
         //Type handler_type = this.handlers[ header ];
-        if(!this.handlers.TryGetValue( header, out Type handler_type ) ) {
+        if(!this.handlers.TryGetValue( header, out IHandler? handler ) ) {
             this.logger.LogWarning( $"No handler found for {header}" );
             return null;
         }
 
-        return handler_type.IsAssignableFrom( typeof( IHandler ) )
-               ? ( IHandler? )this.sp.GetRequiredService( handler_type )
-               : throw new Exception( $"A handler was found for {header}, but it wasn't assignable to IHandler" ); 
+        return handler;
     }
 }

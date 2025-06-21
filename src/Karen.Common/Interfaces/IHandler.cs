@@ -2,6 +2,7 @@
 
 namespace Karen.Common.Interfaces;
 public interface IHandler {
+    short Header { get; }
     Task HandleAsync( IKarenClient client, object body );
 }
 
