@@ -89,8 +89,4 @@ public class TcpService : ConnectionHandler {
 
         return true;
     }
-
-    private async Task ProcessPacketAsync( IKarenClient client, byte[] message ) {
-
-    }
 }
