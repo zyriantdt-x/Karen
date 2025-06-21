@@ -65,12 +65,12 @@ public abstract class ComposerBase {
 
         this.writer!.Write( Base64Encoding.Encode( this.Header, 2 ) ); // write the header
 
-        await this.ComposeAsync(); // write the contents
+        this.Compose(); // write the contents
 
         this.writer!.Write( new( [1] ) ); // wtf ? write the end
 
         if( with_flush ) _ = await writer.FlushAsync();
     }
 
-    protected abstract Task ComposeAsync();
+    protected abstract void Compose();
 }

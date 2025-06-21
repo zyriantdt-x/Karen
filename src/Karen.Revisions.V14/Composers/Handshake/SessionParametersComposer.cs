@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Karen.Revisions.V14.Composers.Handshake;
+﻿namespace Karen.Revisions.V14.Composers.Handshake;
 public class SessionParametersComposer : ComposerBase {
     public override short Header => 257;
 
@@ -20,19 +14,19 @@ public class SessionParametersComposer : ComposerBase {
             { SessionParameters.TUTORIAL_ENABLED, "0" },
         };
 
-    protected override async Task ComposeAsync() {
-        await this.Write( this.Parameters.Count );
+    protected override void Compose() {
+        this.Write( this.Parameters.Count );
 
         foreach( KeyValuePair<SessionParameters, string> parameter in this.Parameters ) {
             SessionParameters key = parameter.Key;
             string value = parameter.Value;
 
-            await this.Write( ( int )key );
+            this.Write( ( int )key );
 
             if( !String.IsNullOrWhiteSpace( value ) && Int32.TryParse( value, out int value_as_int ) )
-                await this.Write( value_as_int );
+                this.Write( value_as_int );
             else
-                await this.Write( value );
+                this.Write( value );
         }
     }
 }

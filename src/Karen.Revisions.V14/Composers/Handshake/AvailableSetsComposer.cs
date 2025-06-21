@@ -9,7 +9,7 @@ public class AvailableSetsComposer : ComposerBase {
         "585,590,595,596,600,605,610,615,620,625,626,627,630,635,640,645,650,655,660,665,667,669," +
         "670,675,680,685,690,695,696,700,705,710,715,720,725,730,735,740"; // / todo: move to db
 
-    protected override async Task ComposeAsync() {
-        await this.Write( $"[{this.AvailableSets}]" );
+    protected override void Compose() {
+        this.Write( $"[{this.AvailableSets}]" );
     }
 }
