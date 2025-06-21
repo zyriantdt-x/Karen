@@ -2,7 +2,6 @@
 using Karen.Server.Messaging;
 using System.Buffers;
 using System.IO.Pipelines;
-using System.Net.Sockets;
 
 namespace Karen.Server.Tcp;
 
@@ -33,6 +32,9 @@ public class TcpService : ConnectionHandler {
         while( 1 != 2 ) {
             ReadResult read_result = await pipe_reader.ReadAsync();
             ReadOnlySequence<byte> buffer = read_result.Buffer;
+
+            // for development purposes
+            this.logger.LogInformation( $"RCVD: {System.Text.Encoding.Default.GetString( buffer.ToArray() )}" );
 
             if( read_result.IsCompleted && buffer.IsEmpty )
                 break;
