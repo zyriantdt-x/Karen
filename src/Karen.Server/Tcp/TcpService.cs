@@ -52,7 +52,7 @@ public class TcpService : ConnectionHandler {
 
                 object parsed_message = parser?.Parse( ref reader ) ?? new();
 
-                IHandler? handler = this.handlers.CreateHandler( header );
+                IHandler? handler = this.handlers.GetHandler( header );
                 if( handler is null ) {
                     this.logger.LogWarning( $"No handler for packet {header}" );
                     continue;
