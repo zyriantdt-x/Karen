@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Karen.Revisions.V14.Composers.Handshake;
+using Karen.Revisions.V14.Composers.Player;
+using Microsoft.Extensions.Logging;
 
 namespace Karen.Server.Game.Player;
 public class PlayerAuthService : IPlayerAuthService {
@@ -23,6 +25,9 @@ public class PlayerAuthService : IPlayerAuthService {
         client.Player = player;
 
         this.logger.LogInformation( $"User {player.PlayerDetails.Username} has logged in" );
+
+        await client.SendAsync( new LoginComposer() );
+        await client.SendAsync( new RightsComposer() );
 
         return true;
     }

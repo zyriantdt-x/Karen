@@ -21,8 +21,5 @@ public class TryLoginHandler : IHandler<TryLoginMessage> {
             await client.SendAsync( new AlertComposer() { Message = "Username or password is incorrect." } );
             return;
         }
-
-        await client.SendAsync( new LoginComposer() );
-        await client.SendAsync( new RightsComposer() );
     }
 }
