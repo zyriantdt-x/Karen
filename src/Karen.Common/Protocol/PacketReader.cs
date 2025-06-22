@@ -50,8 +50,6 @@ public ref struct PacketReader {
         return this.reader.TryRead( out byte b )
                ? b
                : throw new InvalidOperationException( "Unable to read byte" );
-
-
     }
 
     public ReadOnlySpan<byte> PeekSpan( int length, bool advance = true ) {

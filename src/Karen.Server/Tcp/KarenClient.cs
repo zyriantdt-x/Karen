@@ -1,11 +1,12 @@
-﻿using System.IO.Pipelines;
+﻿using Karen.Common.Interfaces.Game;
+using System.IO.Pipelines;
 
 namespace Karen.Server.Tcp;
 
 public class KarenClient : IKarenClient {
     public Guid Uuid { get; init; } = Guid.NewGuid();
 
-    public int PlayerId { get; set; } = -1;
+    public IPlayer? Player { get; set; }
 
     public bool HasPonged { get; set; }
 
