@@ -24,6 +24,14 @@ public class PlayerDetailsService : IPlayerDetailsService {
         return pd?.MapToDto();
     }
 
+    public async Task<PlayerDetails?> GetPlayerDetails( string username, string password ) {
+        IKarenDbContext storage = await this.storage_factory.CreateDbContextAsync();
+
+        PlayerDetailsEntity? pd = await storage.PlayerDetails.FirstOrDefaultAsync( p => p.Username == username && p.Password == password );
+
+        return pd?.MapToDto();
+    }
+
     public Task SetPlayerDetails( PlayerDetails player_details ) {
         throw new NotImplementedException();
     }
