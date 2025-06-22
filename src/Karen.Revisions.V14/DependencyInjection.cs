@@ -1,5 +1,6 @@
 ﻿using Karen.Common.Interfaces;
 using Karen.Revisions.V14.Handlers.Handshake;
+using Karen.Revisions.V14.Handlers.Player;
 using Karen.Revisions.V14.Parsers.Handshake;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,6 +10,7 @@ public static class DependencyInjection {
         _ = services.AddTransient<IHandler, InitCryptoHandler>()
                     .AddTransient<IHandler, GenerateKeyHandler>()
                     .AddTransient<IHandler, TryLoginHandler>()
+                    .AddTransient<IHandler, GetInfoHandler>()
 
                     // parsers
                     .AddTransient<IParser, TryLoginParser>();
