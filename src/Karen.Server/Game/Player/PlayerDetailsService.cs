@@ -1,10 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace Karen.Game.Player;
+﻿namespace Karen.Server.Game.Player;
 public class PlayerDetailsService : IPlayerDetailsService {
     private readonly IKarenDbContextFactory storage_factory;
 
-    public PlayerDetailsService(IKarenDbContextFactory storage_factory) {
+    public PlayerDetailsService( IKarenDbContextFactory storage_factory ) {
         this.storage_factory = storage_factory;
     }
 

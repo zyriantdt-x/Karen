@@ -1,7 +1,6 @@
-﻿
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 
-namespace Karen.Game.Player;
+namespace Karen.Server.Game.Player;
 public class PlayerRepository : IPlayerRepository {
     private readonly ConcurrentDictionary<int, IPlayer> players;
 
@@ -26,6 +25,6 @@ public class PlayerRepository : IPlayerRepository {
     }
 
     public IPlayer? GetPlayer( string username ) {
-        return this.players.FirstOrDefault(kvp => kvp.Value.PlayerDetails.Username == username ).Value;
+        return this.players.FirstOrDefault( kvp => kvp.Value.PlayerDetails.Username == username ).Value;
     }
 }

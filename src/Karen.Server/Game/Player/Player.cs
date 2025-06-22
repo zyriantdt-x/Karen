@@ -1,5 +1,4 @@
-﻿
-namespace Karen.Game.Player;
+﻿namespace Karen.Server.Game.Player;
 public class Player : IPlayer {
     public PlayerDetails PlayerDetails { get; }
     public IKarenClient KarenClient { get; }

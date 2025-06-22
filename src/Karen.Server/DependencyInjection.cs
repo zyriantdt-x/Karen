@@ -1,4 +1,5 @@
-﻿using Karen.Server.Messaging;
+﻿using Karen.Server.Game.Player;
+using Karen.Server.Messaging;
 
 namespace Karen.Server;
 
@@ -12,5 +13,11 @@ public static class DependencyInjection {
              .AddSingleton<ITcpClientService, TcpClientService>()
              .AddSingleton<HandlerRepository>()
              .AddSingleton<ParserRepository>();
+    }
+
+    public static void AddGameServices( this IServiceCollection services ) {
+        _ = services.AddSingleton<IPlayerAuthService, PlayerAuthService>()
+                    .AddSingleton<IPlayerDetailsService, PlayerDetailsService>()
+                    .AddSingleton<IPlayerRepository, PlayerRepository>();
     }
 }

@@ -20,7 +20,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Karen.Common\Karen.Common.csproj" />
-	  <ProjectReference Include="..\Karen.Game\Karen.Game.csproj" />
 	  <ProjectReference Include="..\Karen.Revisions.V14\Karen.Revisions.V14.csproj" />
 	</ItemGroup>
 

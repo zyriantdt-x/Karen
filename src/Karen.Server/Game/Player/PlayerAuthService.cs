@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Karen.Game.Player;
+namespace Karen.Server.Game.Player;
 public class PlayerAuthService : IPlayerAuthService {
     private readonly ILogger<PlayerAuthService> logger;
     private readonly IPlayerRepository players;
