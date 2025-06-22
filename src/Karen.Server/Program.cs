@@ -1,4 +1,5 @@
 ﻿using Karen.Revisions.V14;
+using Karen.Server.Storage;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder( args );
 
@@ -10,6 +11,8 @@ builder.Configuration
 builder.AddTcpService();
 
 builder.Services.AddV14();
+builder.Services.AddDbContextFactory<KarenDbContext>( options => options.UseSqlite( $"Data Source=C:\\etc\\karen.db" ) );
+builder.Services.AddSingleton<IKarenDbContextFactory, KarenDbContextFactory>();
 
 // logs - this is ugly asf
 builder.Services.AddLogging( logging => 
