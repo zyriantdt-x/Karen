@@ -3,4 +3,5 @@
 namespace Karen.Common.Interfaces.Game;
 public interface IPlayer {
     PlayerDetails PlayerDetails { get; }
+    IKarenClient KarenClient { get; }
 }

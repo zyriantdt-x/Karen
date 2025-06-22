@@ -1,9 +1,10 @@
 ﻿using Karen.Common.Abstractions;
+using Karen.Common.Interfaces.Game;
 
 namespace Karen.Common.Interfaces;
 public interface IKarenClient {
     Guid Uuid { get; init; }
-    int PlayerId { get; set; }
+    IPlayer? Player { get; set; }
 
     bool HasPonged { get; set; }
 
