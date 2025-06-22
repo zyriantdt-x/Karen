@@ -3,8 +3,8 @@ using System.Buffers;
 
 namespace Karen.Common.Protocol;
 
-public readonly ref struct PacketReader {
-    private readonly SequenceReader<byte> reader;
+public ref struct PacketReader {
+    private SequenceReader<byte> reader;
 
     public PacketReader( ReadOnlySequence<byte> packet ) {
         this.reader = new( packet );
