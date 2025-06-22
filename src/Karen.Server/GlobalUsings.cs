@@ -10,3 +10,6 @@ global using Karen.Common.Abstractions;
 global using Karen.Server.Tcp;
 global using Karen.Common.Encoding;
 global using Karen.Server;
+global using Karen.Revisions.V14;
+global using Karen.Server.Storage;
+global using Karen.Game;
