@@ -29,7 +29,7 @@ public ref struct PacketReader {
         if( this.reader.CurrentSpan.Length - this.reader.CurrentSpanIndex < 2 )
             throw new InvalidOperationException( "Not enough data for base64" );
 
-        ReadOnlySpan<byte> bytes = this.reader.CurrentSpan.Slice( this.reader.CurrentSpanIndex, 2 );
+        ReadOnlySpan<byte> bytes = this.PeekSpan( 2 );
 
         return Base64Encoding.Decode( bytes );
     }
@@ -48,8 +48,10 @@ public ref struct PacketReader {
 
     public byte ReadByte() {
         return this.reader.TryRead( out byte b )
-               ? throw new InvalidOperationException( "Unable to read byte" )
-               : b;
+               ? b
+               : throw new InvalidOperationException( "Unable to read byte" );
+
+
     }
 
     public ReadOnlySpan<byte> PeekSpan( int length, bool advance = true ) {
