@@ -16,16 +16,14 @@ public class NavigateHandler : IHandler<NavigateMessage> {
 
     public async Task HandleAsync( IKarenClient client, NavigateMessage body ) {
         NavigatorCategory? category = await this.navigator.GetCategory( body.CategoryId );
-        IEnumerable<NavigatorCategory> subcategories = await this.navigator.GetCategoriesByParentId( body.CategoryId );
-        IEnumerable<NavigatorNode> nodes = await this.navigator.GetNavigatorNodesByCategoryId( body.CategoryId );
 
         if( category is null )
             return;
 
         await client.SendAsync( new NavNodeInfoComposer() {
             ParentCategory = category,
-            Subcategories = subcategories,
-            Nodes = nodes.ToList(),
+            Subcategories = category.Subcategories,
+            Nodes = category.Nodes,
             HideFull = body.HideFull
         } );
     }

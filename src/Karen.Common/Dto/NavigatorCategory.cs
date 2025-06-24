@@ -8,4 +8,6 @@ public class NavigatorCategory {
     public required bool IsTradingAllowed { get; set; }
     public required int MinAccess { get; set; }
     public required int MinAssign { get; set; }
+    public IEnumerable<NavigatorCategory> Subcategories { get; set; } = [];
+    public ICollection<NavigatorNode> Nodes { get; set; } = [];
 }
