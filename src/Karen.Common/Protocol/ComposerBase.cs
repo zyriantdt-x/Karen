@@ -2,7 +2,7 @@
 using System.Buffers;
 using System.IO.Pipelines;
 
-namespace Karen.Common.Abstractions;
+namespace Karen.Common.Protocol;
 public abstract class ComposerBase {
     private PipeWriter? writer;
 

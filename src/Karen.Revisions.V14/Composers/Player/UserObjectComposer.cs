@@ -1,4 +1,5 @@
 ﻿using Karen.Common.Dto;
+using Karen.Common.Protocol;
 
 namespace Karen.Revisions.V14.Composers.Player;
 public class UserObjectComposer : ComposerBase {

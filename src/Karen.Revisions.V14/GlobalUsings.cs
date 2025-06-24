@@ -1,1 +1,1 @@
-﻿global using Karen.Common.Abstractions;
+﻿global using Karen.Common.Protocol;

@@ -1,4 +1,6 @@
-﻿namespace Karen.Revisions.V14.Composers.Player;
+﻿using Karen.Common.Protocol;
+
+namespace Karen.Revisions.V14.Composers.Player;
 public class RightsComposer : ComposerBase {
     public override short Header => 2;
 

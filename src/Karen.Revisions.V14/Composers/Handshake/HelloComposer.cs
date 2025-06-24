@@ -1,4 +1,6 @@
 ﻿
+using Karen.Common.Protocol;
+
 namespace Karen.Revisions.V14.Composers.Handshake;
 public class HelloComposer : ComposerBase {
     public override short Header => 0;

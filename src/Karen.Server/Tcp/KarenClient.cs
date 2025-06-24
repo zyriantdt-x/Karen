@@ -1,4 +1,5 @@
 ﻿using Karen.Common.Interfaces.Game;
+using Karen.Common.Protocol;
 using System.IO.Pipelines;
 
 namespace Karen.Server.Tcp;

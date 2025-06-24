@@ -1,4 +1,5 @@
-﻿using Karen.Revisions.V14.Composers.Handshake;
+﻿using Karen.Common.Protocol;
+using Karen.Revisions.V14.Composers.Handshake;
 using System.Collections.Concurrent;
 
 namespace Karen.Server.Tcp;

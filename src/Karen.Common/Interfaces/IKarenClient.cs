@@ -1,5 +1,5 @@
-﻿using Karen.Common.Abstractions;
-using Karen.Common.Interfaces.Game;
+﻿using Karen.Common.Interfaces.Game;
+using Karen.Common.Protocol;
 
 namespace Karen.Common.Interfaces;
 public interface IKarenClient {

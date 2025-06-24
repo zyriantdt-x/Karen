@@ -1,4 +1,4 @@
-﻿using Karen.Common.Abstractions;
+﻿using Karen.Common.Protocol;
 using Microsoft.AspNetCore.Connections;
 
 namespace Karen.Common.Interfaces;

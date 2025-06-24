@@ -1,4 +1,6 @@
-﻿namespace Karen.Revisions.V14.Composers.Alerts;
+﻿using Karen.Common.Protocol;
+
+namespace Karen.Revisions.V14.Composers.Alerts;
 public class AlertComposer : ComposerBase {
     public override short Header => 139;
 
