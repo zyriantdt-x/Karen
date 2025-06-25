@@ -25,7 +25,9 @@ public class KarenClient : IKarenClient {
         return this.connection_ctx.Transport.Output.CompleteAsync();
     }
 
-    public async Task SendAsync( ComposerBase composer, bool queued = false ) {
+    /*public async Task SendAsync( ComposerBase composer, bool queued = false ) {
         await composer.WriteToPipeAsync( this.connection_ctx.Transport.Output, !queued );
-    }
+    }*/
+
+    public PipeWriter Writer => this.connection_ctx.Transport.Output;
 }

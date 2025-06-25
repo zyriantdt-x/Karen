@@ -1,5 +1,6 @@
 ﻿using Karen.Common.Interfaces.Game;
 using Karen.Common.Protocol;
+using System.IO.Pipelines;
 
 namespace Karen.Common.Interfaces;
 public interface IKarenClient {
@@ -8,7 +9,9 @@ public interface IKarenClient {
 
     bool HasPonged { get; set; }
 
-    Task SendAsync( ComposerBase composer, bool queued = false );
+    PipeWriter Writer { get; }
+
+    //Task SendAsync( ComposerBase composer, bool queued = false );
     Task FlushAsync();
 
     ValueTask KillAsync();

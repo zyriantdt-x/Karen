@@ -1,9 +1,11 @@
-﻿
-using Karen.Common.Protocol;
+﻿using Karen.Common.Interfaces;
+using Karen.Common.Messages.Outgoing.Handshake;
 
 namespace Karen.Revisions.V14.Composers.Handshake;
-public class HelloComposer : ComposerBase {
-    public override short Header => 0;
+public class HelloComposer : IComposer<HelloMessage> {
+    public short Header => 0;
 
-    protected override void Compose() { }
+    public void Compose( ref PacketWriter writer, HelloMessage message ) {
+        
+    }
 }
