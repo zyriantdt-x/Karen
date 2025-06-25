@@ -1,4 +1,5 @@
-﻿using Karen.Common.Protocol;
+﻿using Karen.Common.Messages.Outgoing.Handshake;
+using Karen.Common.Protocol;
 using Karen.Revisions.V14.Composers.Handshake;
 using System.Collections.Concurrent;
 
@@ -7,10 +8,12 @@ namespace Karen.Server.Tcp;
 public class TcpClientService : ITcpClientService {
     private readonly List<IKarenClient> clients;
     private readonly object lock_obj;
+    private readonly IMessageDispatcher message_dispatcher;
 
-    public TcpClientService() {
+    public TcpClientService( IMessageDispatcher message_dispatcher ) {
         this.clients = [];
         this.lock_obj = new();
+        this.message_dispatcher = message_dispatcher;
     }
 
     public async Task<IKarenClient> CreateClientAsync( ConnectionContext ctx ) {
@@ -20,7 +23,7 @@ public class TcpClientService : ITcpClientService {
             this.clients.Add( client );
         }
 
-        await client.SendAsync( new HelloComposer() );
+        await this.message_dispatcher.SendMessageAsync( client, new HelloMessage() );
 
         return client;
     }

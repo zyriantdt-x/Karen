@@ -1,6 +1,6 @@
 ﻿namespace Karen.Server.Tcp;
 
-public class MessageDispatcher {
+public class MessageDispatcher : IMessageDispatcher {
     private readonly ILogger<MessageDispatcher> logger;
     private readonly IComposerFactory composers;
 
