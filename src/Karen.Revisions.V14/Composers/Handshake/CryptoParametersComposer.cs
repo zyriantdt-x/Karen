@@ -1,11 +1,13 @@
 ﻿
+using Karen.Common.Interfaces;
+using Karen.Common.Messages.Outgoing.Handshake;
 using Karen.Common.Protocol;
 
 namespace Karen.Revisions.V14.Composers.Handshake;
-public class CryptoParametersComposer : ComposerBase {
-    public override short Header => 277;
+public class CryptoParametersComposer : IComposer<CryptoParametersMessage> {
+    public short Header => 277;
 
-    protected override void Compose() {
-        this.Write( 0 );
+    public void Compose( ref PacketWriter writer, CryptoParametersMessage message ) {
+        writer.Write( 0 );
     }
 }

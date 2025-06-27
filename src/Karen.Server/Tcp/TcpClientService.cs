@@ -41,6 +41,6 @@ public class TcpClientService : ITcpClientService {
     }
 
     public Task BroadcastMessageAsync( ComposerBase composer ) {
-        return Parallel.ForEachAsync( this.clients, async ( client, st ) => await client.SendAsync( composer ) );
+        throw new NotImplementedException();//return Parallel.ForEachAsync( this.clients, async ( client, st ) => await client.SendAsync( composer ) );
     }
 }
