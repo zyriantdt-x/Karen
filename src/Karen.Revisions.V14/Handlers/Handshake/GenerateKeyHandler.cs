@@ -13,9 +13,7 @@ public class GenerateKeyHandler : IHandler {
     }
 
     public async Task HandleAsync( IKarenClient client, object body ) {
+        await this.dispatcher.SendMessageAsync( client, new SessionParametersMessage() );
         await this.dispatcher.SendMessageAsync( client, new AvailableSetsMessage() );
-
-        await client.SendAsync( new SessionParametersComposer() );
-        await client.SendAsync( new AvailableSetsComposer() );
     }
 }

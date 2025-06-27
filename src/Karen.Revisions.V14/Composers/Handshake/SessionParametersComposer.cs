@@ -1,46 +1,24 @@
-﻿using Karen.Common.Protocol;
+﻿using Karen.Common.Interfaces;
+using Karen.Common.Messages.Outgoing.Handshake;
+using Karen.Common.Protocol;
 
 namespace Karen.Revisions.V14.Composers.Handshake;
-public class SessionParametersComposer : ComposerBase {
-    public override short Header => 257;
+public class SessionParametersComposer : IComposer<SessionParametersMessage> {
+    public short Header => 257;
 
-    public Dictionary<SessionParameters, string> Parameters { get; set; } = new() {
-            { SessionParameters.VOUCHER_ENABLED, "1" }, // todo: load from db
-            { SessionParameters.REGISTER_REQUIRE_PARENT_EMAIL, "0" },
-            { SessionParameters.REGISTER_SEND_PARENT_EMAIL, "0" },
-            { SessionParameters.ALLOW_DIRECT_MAIL, "0" },
-            { SessionParameters.DATE_FORMAT, "dd-MM-yyyy" },
-            { SessionParameters.PARTNER_INTEGRATION_ENABLED, "0" },
-            { SessionParameters.ALLOW_PROFILE_EDITING, "1" }, // todo: load from db
-            { SessionParameters.TRACKING_HEADER, "" },
-            { SessionParameters.TUTORIAL_ENABLED, "0" },
-        };
+    public void Compose( ref PacketWriter writer, SessionParametersMessage message ) {
+        writer.Write( message.Parameters.Count );
 
-    protected override void Compose() {
-        this.Write( this.Parameters.Count );
-
-        foreach( KeyValuePair<SessionParameters, string> parameter in this.Parameters ) {
+        foreach( KeyValuePair<SessionParameters, string> parameter in message.Parameters ) {
             SessionParameters key = parameter.Key;
             string value = parameter.Value;
 
-            this.Write( ( int )key );
+            writer.Write( ( int )key );
 
             if( !String.IsNullOrWhiteSpace( value ) && Int32.TryParse( value, out int value_as_int ) )
-                this.Write( value_as_int );
+                writer.Write( value_as_int );
             else
-                this.Write( value );
+                writer.Write( value );
         }
     }
-}
-
-public enum SessionParameters {
-    VOUCHER_ENABLED = 1,
-    REGISTER_REQUIRE_PARENT_EMAIL = 2,
-    REGISTER_SEND_PARENT_EMAIL = 3,
-    ALLOW_DIRECT_MAIL = 4,
-    DATE_FORMAT = 5,
-    PARTNER_INTEGRATION_ENABLED = 6,
-    ALLOW_PROFILE_EDITING = 7,
-    TRACKING_HEADER = 8,
-    TUTORIAL_ENABLED = 9
 }
