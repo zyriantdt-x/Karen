@@ -1,12 +1,12 @@
-﻿using Karen.Common.Protocol;
+﻿using Karen.Common.Interfaces;
+using Karen.Common.Messages.Outgoing.Alerts;
+using Karen.Common.Protocol;
 
 namespace Karen.Revisions.V14.Composers.Alerts;
-public class AlertComposer : ComposerBase {
-    public override short Header => 139;
+public class AlertComposer : IComposer<AlertMessage> {
+    public short Header => 139;
 
-    public required string Message { get; set; }
-
-    protected override void Compose() {
-        this.Write( this.Message );
+    public void Compose( ref PacketWriter writer, AlertMessage message ) {
+        writer.Write( message.Message );
     }
 }
