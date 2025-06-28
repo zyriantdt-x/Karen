@@ -1,4 +1,6 @@
-﻿namespace Karen.Server.Tcp;
+﻿using System.Buffers;
+
+namespace Karen.Server.Tcp;
 
 public class MessageDispatcher : IMessageDispatcher {
     private readonly ILogger<MessageDispatcher> logger;
@@ -11,9 +13,10 @@ public class MessageDispatcher : IMessageDispatcher {
 
     public async Task SendMessageAsync<T>( IKarenClient client, T message ) {
         PacketWriter writer = new( client.Writer );
+        IComposer<T> composer = this.composers.CreateComposer<T>();
 
-        this.composers.CreateComposer<T>()
-                      .Compose( ref writer , message );
+        client.Writer.Write( Base64Encoding.Encode( composer.Header, 2 ) );
+        composer.Compose( ref writer , message );
 
         await client.FlushAsync();
     }
