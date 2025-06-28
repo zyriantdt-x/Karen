@@ -1,8 +1,4 @@
-﻿using Karen.Revisions.V14.Composers.Handshake;
-using Karen.Revisions.V14.Composers.Player;
-using Microsoft.Extensions.Logging;
-
-namespace Karen.Server.Game.Player;
+﻿namespace Karen.Game.Player;
 public class PlayerAuthService : IPlayerAuthService {
     private readonly ILogger<PlayerAuthService> logger;
     private readonly IPlayerRepository players;

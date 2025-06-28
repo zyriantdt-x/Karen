@@ -1,5 +1,5 @@
 ﻿
-namespace Karen.Server.Game.Rooms;
+namespace Karen.Game.Rooms;
 
 public class NavigatorService : INavigatorService {
 

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 
-namespace Karen.Server.Game.Player;
+namespace Karen.Game.Player;
 public class PlayerRepository : IPlayerRepository {
     private readonly ConcurrentDictionary<int, IPlayer> players;
 

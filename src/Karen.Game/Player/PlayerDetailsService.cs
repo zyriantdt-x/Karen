@@ -1,4 +1,4 @@
-﻿namespace Karen.Server.Game.Player;
+﻿namespace Karen.Game.Player;
 public class PlayerDetailsService : IPlayerDetailsService {
     private readonly IKarenDbContextFactory storage_factory;
 

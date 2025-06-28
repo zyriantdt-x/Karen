@@ -1,5 +1,4 @@
-﻿using Karen.Server.Game.Player;
-using Karen.Server.Messaging;
+﻿using Karen.Server.Messaging;
 using Karen.Server.Tcp.Handlers.Handshake;
 using Karen.Server.Tcp.Handlers.Player;
 
@@ -23,11 +22,5 @@ public static class DependencyInjection {
              .AddTransient<IHandler, GenerateKeyHandler>()
              .AddTransient<IHandler, TryLoginHandler>()
              .AddTransient<IHandler, GetInfoHandler>();
-    }
-
-    public static void AddGameServices( this IServiceCollection services ) {
-        _ = services.AddSingleton<IPlayerAuthService, PlayerAuthService>()
-                    .AddSingleton<IPlayerDetailsService, PlayerDetailsService>()
-                    .AddSingleton<IPlayerRepository, PlayerRepository>();
     }
 }
