@@ -1,7 +1,4 @@
 ﻿using Karen.Common.Messages.Outgoing.Handshake;
-using Karen.Common.Protocol;
-using Karen.Revisions.V14.Composers.Handshake;
-using System.Collections.Concurrent;
 
 namespace Karen.Server.Tcp;
 
@@ -28,7 +25,7 @@ public class TcpClientService : ITcpClientService {
         return client;
     }
 
-    public async Task DisconnectClientAsync(IKarenClient client) {
+    public async Task DisconnectClientAsync( IKarenClient client ) {
         await client.KillAsync();
 
         lock( this.lock_obj ) {
@@ -40,7 +37,7 @@ public class TcpClientService : ITcpClientService {
         return this.clients.FirstOrDefault( c => c.Uuid == uuid );
     }
 
-    public Task BroadcastMessageAsync( ComposerBase composer ) {
+    public Task BroadcastMessageAsync( IComposer composer ) {
         throw new NotImplementedException();//return Parallel.ForEachAsync( this.clients, async ( client, st ) => await client.SendAsync( composer ) );
     }
 }

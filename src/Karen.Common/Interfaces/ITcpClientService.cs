@@ -9,5 +9,5 @@ public interface ITcpClientService {
 
     IKarenClient? GetClient( Guid uuid );
 
-    Task BroadcastMessageAsync( ComposerBase composer );
+    Task BroadcastMessageAsync( IComposer composer );
 }
