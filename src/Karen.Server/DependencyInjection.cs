@@ -12,7 +12,9 @@ public static class DependencyInjection {
         _ = builder.Services
              .AddSingleton<ITcpClientService, TcpClientService>()
              .AddSingleton<HandlerRepository>()
-             .AddSingleton<ParserRepository>();
+             .AddSingleton<ParserRepository>()
+             .AddTransient<IComposerFactory, ComposerFactory>()
+             .AddTransient<IMessageDispatcher, MessageDispatcher>();
     }
 
     public static void AddGameServices( this IServiceCollection services ) {

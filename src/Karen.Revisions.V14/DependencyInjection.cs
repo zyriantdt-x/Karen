@@ -1,6 +1,10 @@
 ﻿using Karen.Common.Interfaces;
+using Karen.Common.Messages.Outgoing.Alerts;
 using Karen.Common.Messages.Outgoing.Handshake;
+using Karen.Common.Messages.Outgoing.Player;
+using Karen.Revisions.V14.Composers.Alerts;
 using Karen.Revisions.V14.Composers.Handshake;
+using Karen.Revisions.V14.Composers.Player;
 using Karen.Revisions.V14.Handlers.Handshake;
 using Karen.Revisions.V14.Handlers.Player;
 using Karen.Revisions.V14.Parsers.Handshake;
@@ -19,6 +23,12 @@ public static class DependencyInjection {
 
                     // composers
                     .AddTransient<IComposer<HelloMessage>, HelloComposer>()
-                    .AddTransient<IComposer<AvailableSetsMessage>, AvailableSetsComposer>();
+                    .AddTransient<IComposer<AvailableSetsMessage>, AvailableSetsComposer>()
+                    .AddTransient<IComposer<AlertMessage>, AlertComposer>()
+                    .AddTransient<IComposer<CryptoParametersMessage>, CryptoParametersComposer>()
+                    .AddTransient<IComposer<LoginMessage>, LoginComposer>()
+                    .AddTransient<IComposer<SessionParametersMessage>, SessionParametersComposer>()
+                    .AddTransient<IComposer<CreditsBalanceMessage>, CreditBalanceComposer>()
+                    .AddTransient<IComposer<UserObjectMessage>, UserObjectComposer>();
     }
 }
