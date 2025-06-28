@@ -1,13 +1,10 @@
-﻿using Karen.Common.Protocol;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Karen.Common.Interfaces;
+using Karen.Common.Messages.Outgoing.Handshake;
 
 namespace Karen.Revisions.V14.Composers.Handshake;
-public class LoginComposer : ComposerBase {
-    public override short Header => 3;
+public class LoginComposer : IComposer<LoginMessage> {
+    public short Header => 3;
 
-    protected override void Compose() {}
+    public void Compose( ref PacketWriter writer, LoginMessage message ) {
+    }
 }
