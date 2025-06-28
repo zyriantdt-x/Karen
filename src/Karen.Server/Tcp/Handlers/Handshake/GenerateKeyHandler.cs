@@ -1,8 +1,6 @@
-﻿using Karen.Common.Interfaces;
-using Karen.Common.Messages.Outgoing.Handshake;
-using Karen.Revisions.V14.Composers.Handshake;
+﻿using Karen.Common.Messages.Outgoing.Handshake;
 
-namespace Karen.Revisions.V14.Handlers.Handshake;
+namespace Karen.Server.Tcp.Handlers.Handshake;
 public class GenerateKeyHandler : IHandler {
     public short Header => 202;
 

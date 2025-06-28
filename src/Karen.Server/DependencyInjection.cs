@@ -1,5 +1,7 @@
 ﻿using Karen.Server.Game.Player;
 using Karen.Server.Messaging;
+using Karen.Server.Tcp.Handlers.Handshake;
+using Karen.Server.Tcp.Handlers.Player;
 
 namespace Karen.Server;
 
@@ -14,7 +16,13 @@ public static class DependencyInjection {
              .AddSingleton<HandlerRepository>()
              .AddSingleton<ParserRepository>()
              .AddTransient<IComposerFactory, ComposerFactory>()
-             .AddTransient<IMessageDispatcher, MessageDispatcher>();
+             .AddTransient<IMessageDispatcher, MessageDispatcher>()
+
+             // handlers
+             .AddTransient<IHandler, InitCryptoHandler>()
+             .AddTransient<IHandler, GenerateKeyHandler>()
+             .AddTransient<IHandler, TryLoginHandler>()
+             .AddTransient<IHandler, GetInfoHandler>();
     }
 
     public static void AddGameServices( this IServiceCollection services ) {

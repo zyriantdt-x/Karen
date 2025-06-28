@@ -5,7 +5,7 @@ using Karen.Common.Messages.Outgoing.Handshake;
 using Karen.Common.Messages.Outgoing.Player;
 using Karen.Revisions.V14.Messages.Handshake;
 
-namespace Karen.Revisions.V14.Handlers.Handshake;
+namespace Karen.Server.Tcp.Handlers.Handshake;
 public class TryLoginHandler : IHandler<TryLoginMessage> {
     public short Header => 4;
 

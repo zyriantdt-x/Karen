@@ -2,7 +2,7 @@
 using Karen.Common.Messages.Outgoing.Player;
 using Karen.Revisions.V14.Composers.Player;
 
-namespace Karen.Revisions.V14.Handlers.Player;
+namespace Karen.Server.Tcp.Handlers.Player;
 public class GetInfoHandler : IHandler {
     public short Header => 7;
 
