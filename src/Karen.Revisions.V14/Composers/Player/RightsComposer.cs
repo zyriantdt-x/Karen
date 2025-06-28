@@ -39,8 +39,4 @@ public class RightsComposer : IComposer<RightsMessage> {
         writer.Write( "fuse_habbo_chooser" );
         writer.Write( "fuse_performance_panel" );
     }
-
-    protected override void Compose() {
-        
-    }
 }
