@@ -17,6 +17,7 @@ public class MessageDispatcher : IMessageDispatcher {
 
         client.Writer.Write( Base64Encoding.Encode( composer.Header, 2 ) );
         composer.Compose( ref writer , message );
+        client.Writer.Write( new byte[] { 1 } );
 
         await client.FlushAsync();
     }
