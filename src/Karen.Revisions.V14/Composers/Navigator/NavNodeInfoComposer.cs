@@ -3,7 +3,7 @@ using Karen.Common.Enums;
 using Karen.Common.Protocol;
 
 namespace Karen.Revisions.V14.Composers.Navigator;
-public class NavNodeInfoComposer : ComposerBase {
+/*public class NavNodeInfoComposer : ComposerBase {
     public override short Header => 220;
 
     public required NavigatorCategory ParentCategory { get; set; }
@@ -74,4 +74,4 @@ public class NavNodeInfoComposer : ComposerBase {
             this.Write( subcategory.ParentId );
         }
     }
-}
+}*/

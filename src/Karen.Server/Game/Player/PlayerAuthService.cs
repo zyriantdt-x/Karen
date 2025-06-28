@@ -8,7 +8,8 @@ public class PlayerAuthService : IPlayerAuthService {
     private readonly IPlayerRepository players;
     private readonly IPlayerDetailsService player_details;
     
-    public PlayerAuthService( ILogger<PlayerAuthService> logger, IPlayerRepository players, IPlayerDetailsService player_details ) {
+    public PlayerAuthService( ILogger<PlayerAuthService> logger, 
+                              IPlayerRepository players, IPlayerDetailsService player_details ) {
         this.logger = logger;
         this.players = players;
         this.player_details = player_details;
@@ -25,9 +26,6 @@ public class PlayerAuthService : IPlayerAuthService {
         client.Player = player;
 
         this.logger.LogInformation( $"User {player.PlayerDetails.Username} has logged in" );
-
-        await client.SendAsync( new LoginComposer() );
-        await client.SendAsync( new RightsComposer() );
 
         return true;
     }

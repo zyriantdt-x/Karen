@@ -20,11 +20,11 @@ public class NavigateHandler : IHandler<NavigateMessage> {
         if( category is null )
             return;
 
-        await client.SendAsync( new NavNodeInfoComposer() {
+        /*await client.SendAsync( new NavNodeInfoComposer() {
             ParentCategory = category,
             Subcategories = category.Subcategories,
             Nodes = category.Nodes,
             HideFull = body.HideFull
-        } );
+        } );*/
     }
 }
