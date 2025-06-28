@@ -1,6 +1,6 @@
 ﻿using Karen.Common.Interfaces;
 using Karen.Common.Protocol;
-using Karen.Revisions.V14.Messages.Navigator;
+using Karen.Common.Messages.Incoming.Handshake;
 
 namespace Karen.Revisions.V14.Parsers.Navigator;
 public class NavigateParser : IParser<NavigateMessage> {

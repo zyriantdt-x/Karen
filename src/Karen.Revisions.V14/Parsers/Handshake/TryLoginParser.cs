@@ -1,6 +1,6 @@
 ﻿using Karen.Common.Interfaces;
 using Karen.Common.Protocol;
-using Karen.Revisions.V14.Messages.Handshake;
+using Karen.Common.Messages.Incoming.Handshake;
 using System.Text.RegularExpressions;
 
 namespace Karen.Revisions.V14.Parsers.Handshake;

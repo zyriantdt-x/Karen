@@ -1,9 +1,7 @@
-﻿using Karen.Common.Interfaces;
-using Karen.Common.Interfaces.Game.Services;
+﻿using Karen.Common.Messages.Incoming.Handshake;
 using Karen.Common.Messages.Outgoing.Alerts;
 using Karen.Common.Messages.Outgoing.Handshake;
 using Karen.Common.Messages.Outgoing.Player;
-using Karen.Revisions.V14.Messages.Handshake;
 
 namespace Karen.Server.Tcp.Handlers.Handshake;
 public class TryLoginHandler : IHandler<TryLoginMessage> {

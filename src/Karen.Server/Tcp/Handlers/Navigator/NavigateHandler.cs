@@ -1,4 +1,4 @@
-﻿using Karen.Revisions.V14.Messages.Navigator;
+﻿using Karen.Common.Messages.Incoming.Handshake;
 
 namespace Karen.Server.Tcp.Handlers.Navigator;
 public class NavigateHandler : IHandler<NavigateMessage> {
