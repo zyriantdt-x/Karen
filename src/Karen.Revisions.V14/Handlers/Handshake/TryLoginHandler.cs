@@ -1,10 +1,8 @@
 ﻿using Karen.Common.Interfaces;
 using Karen.Common.Interfaces.Game.Services;
 using Karen.Common.Messages.Outgoing.Alerts;
+using Karen.Common.Messages.Outgoing.Handshake;
 using Karen.Common.Messages.Outgoing.Player;
-using Karen.Revisions.V14.Composers.Alerts;
-using Karen.Revisions.V14.Composers.Handshake;
-using Karen.Revisions.V14.Composers.Player;
 using Karen.Revisions.V14.Messages.Handshake;
 
 namespace Karen.Revisions.V14.Handlers.Handshake;
@@ -21,8 +19,8 @@ public class TryLoginHandler : IHandler<TryLoginMessage> {
 
     public async Task HandleAsync( IKarenClient client, TryLoginMessage body ) {
         bool is_login_successful = await this.auth.TryLoginAsync( client, body.Username, body.Password );
-        if(is_login_successful) {
-            await this.dispatcher.SendMessageAsync( client, new TryLoginMessage() );
+        if( is_login_successful ) {
+            await this.dispatcher.SendMessageAsync( client, new LoginMessage() );
             await this.dispatcher.SendMessageAsync( client, new RightsMessage() );
         } else {
             await this.dispatcher.SendMessageAsync(
